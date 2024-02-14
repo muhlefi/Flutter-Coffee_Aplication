@@ -44,7 +44,7 @@ class _ShopPageState extends State<ShopPage> {
                     // return the tile for this coffee
                     return CoffeeTile(
                       coffee: eachCoffee,
-                      icon: Icon(Icons.deblur),
+                      icon: Icon(Icons.add),
                       onPressed: () => addToCart(eachCoffee),
                     );
                   },
