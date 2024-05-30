@@ -18,7 +18,7 @@ class _CartPageState extends State<CartPage> {
     Provider.of<CoffeeShop>(context, listen: false).removeItemFromCart(coffee);
   }
 
-  // pay button tapped
+  // Pay button tapped
   void payNow() {
     // Show confirmation dialog
     showDialog(
@@ -36,6 +36,10 @@ class _CartPageState extends State<CartPage> {
           TextButton(
             onPressed: () {
               // Implement your payment logic here
+
+              // Clear the cart
+              Provider.of<CoffeeShop>(context, listen: false).clearCart();
+
               Navigator.of(context).pop(); // Close the dialog
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Pembayaran berhasil dilakukan!')),
@@ -56,18 +60,18 @@ class _CartPageState extends State<CartPage> {
           padding: const EdgeInsets.all(25.0),
           child: Column(
             children: [
-              //heading
+              // Heading
               Text(
                 'Your Cart',
                 style: TextStyle(fontSize: 20),
               ),
 
-              //list of cart
+              // List of cart
               Expanded(
                 child: ListView.builder(
                   itemCount: value.userCart.length,
                   itemBuilder: (context, index) {
-                    // get individual cart items
+                    // Get individual cart items
                     Coffee eachCoffee = value.userCart[index];
 
                     // Return coffee tile
@@ -80,7 +84,7 @@ class _CartPageState extends State<CartPage> {
                 ),
               ),
 
-              //pay button
+              // Pay button
               GestureDetector(
                 onTap: payNow,
                 child: Container(
