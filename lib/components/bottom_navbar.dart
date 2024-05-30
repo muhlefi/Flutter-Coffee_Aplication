@@ -3,7 +3,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 class MyBottomNavbar extends StatelessWidget {
   final void Function(int)? onTabChange;
-  MyBottomNavbar({super.key, required this.onTabChange,});
+
+  MyBottomNavbar({super.key, required this.onTabChange});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,10 @@ class MyBottomNavbar extends StatelessWidget {
           GButton(
             icon: Icons.shopping_bag_outlined,
             text: 'Cart',
+          ),
+          GButton(
+            icon: Icons.person_outline,
+            text: 'Profile',
           ),
         ],
       ),

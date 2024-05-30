@@ -7,24 +7,24 @@ class CoffeeShop extends ChangeNotifier {
     // boba
     Coffee(
         name: 'Kopi Item', 
-        price: "4.10", 
+        price: "10.000", 
         imagePath: "lib/images/coffee.png"),
 
     // coffee
       Coffee(name: 'Boba Enak', 
-        price: "100.000", 
+        price: "10.000", 
         imagePath: "lib/images/boba.png"),
 
     // milkshake
     Coffee(
         name: 'Cucuw Milkshake',
-        price: "9.90", 
+        price: "9.000", 
         imagePath: "lib/images/boba.png"),
 
     // coffee
     Coffee(
         name: 'Cucuw Milkshake',
-        price: "9.90",
+        price: "9.000",
         imagePath: "lib/images/coffee.png"),
   ];
 

@@ -13,17 +13,39 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-// Remove item from cart
+  // Remove item from cart
   void removeFromCart(Coffee coffee) {
     Provider.of<CoffeeShop>(context, listen: false).removeItemFromCart(coffee);
   }
 
-// pay button tapped
+  // pay button tapped
   void payNow() {
-    /*
-    
-    
-    */
+    // Show confirmation dialog
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Konfirmasi Pembayaran"),
+        content: Text("Apakah Anda yakin ingin membayar sekarang?"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: Text("Tidak"),
+          ),
+          TextButton(
+            onPressed: () {
+              // Implement your payment logic here
+              Navigator.of(context).pop(); // Close the dialog
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Pembayaran berhasil dilakukan!')),
+              );
+            },
+            child: Text("Ya"),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -32,50 +54,52 @@ class _CartPageState extends State<CartPage> {
       builder: (context, value, child) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(25.0),
-          child: Column(children: [
-            //heading
-            Text(
-              'Your Cart',
-              style: TextStyle(fontSize: 20),
-            ),
-
-            //list of cart
-            Expanded(
-              child: ListView.builder(
-                itemCount: value.userCart.length,
-                itemBuilder: (context, index) {
-                  // get individual cart items
-                  Coffee eachCoffee = value.userCart[index];
-
-                  // Return coffee tile
-                  return CoffeeTile(
-                    coffee: eachCoffee,
-                    onPressed: () => removeFromCart(eachCoffee),
-                    icon: Icon(Icons.delete),
-                  );
-                },
+          child: Column(
+            children: [
+              //heading
+              Text(
+                'Your Cart',
+                style: TextStyle(fontSize: 20),
               ),
-            ),
 
-            //pay button
-            GestureDetector(
-              onTap: payNow,
-              child: Container(
-                padding: const EdgeInsets.all(25),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.brown, 
-                  borderRadius: BorderRadius.circular(12),
+              //list of cart
+              Expanded(
+                child: ListView.builder(
+                  itemCount: value.userCart.length,
+                  itemBuilder: (context, index) {
+                    // get individual cart items
+                    Coffee eachCoffee = value.userCart[index];
+
+                    // Return coffee tile
+                    return CoffeeTile(
+                      coffee: eachCoffee,
+                      onPressed: () => removeFromCart(eachCoffee),
+                      icon: Icon(Icons.delete),
+                    );
+                  },
                 ),
-                child: const Center(
-                  child: Text(
-                    "Pay Now",
-                    style: TextStyle(color: Colors.white),
+              ),
+
+              //pay button
+              GestureDetector(
+                onTap: payNow,
+                child: Container(
+                  padding: const EdgeInsets.all(25),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.brown,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "Pay Now",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
-            )
-          ]),
+            ],
+          ),
         ),
       ),
     );

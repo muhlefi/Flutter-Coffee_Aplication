@@ -3,6 +3,7 @@ import 'package:coffee_application/const.dart';
 import 'package:flutter/material.dart';
 import 'cart_page.dart';
 import 'shop_page.dart';
+import 'profile_page.dart'; // Import ProfilePage
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //navigate bottom bar
+  // Navigate bottom bar
   int _selectedIndex = 0;
   void navigateBottomBar(int index) {
     setState(() {
@@ -20,13 +21,16 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  //pages
+  // Pages
   final List<Widget> _pages = [
-    //shop page
+    // Shop page
     ShopPage(),
 
-    //cartpage
+    // Cart page
     CartPage(),
+
+    // Profile page
+    ProfilePage(), // Add ProfilePage here
   ];
 
   @override
